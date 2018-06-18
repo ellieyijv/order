@@ -67,7 +67,7 @@ public class OrderEntryControllor {
         //配置cookie
         if(useCookie != null && useCookie.equalsIgnoreCase("on")){
             int expire = 3600 * 24 * 30; //如果使用cookie，则将过期时间设为1个月
-            logger.info("用户选择使用cookie，进入使用cookies的控制逻辑！");
+            logger.info("Client use cookie，get into cookies control！");
             Cookie ckUseCookie = new Cookie("ckUseCookie","on");
             Cookie ckCid = new Cookie("ckCid",cid);
             ckUseCookie.setMaxAge(expire);
@@ -77,7 +77,7 @@ public class OrderEntryControllor {
             response.addCookie(ckCid);
         }else{
             int expire = -1; //如果使用cookie，则将过期时间设为-1 控制该cookie立刻过期
-            logger.info("用户没有选择使用cookie，进入不使用cookies的控制逻辑！");
+            logger.info("Not choose to set cookie，dont get into cookies！");
             Cookie ckUseCookie =new Cookie("ckUseCookie","");
             Cookie ckCid =new Cookie("ckCid","");
             ckUseCookie.setMaxAge(expire);
@@ -152,20 +152,20 @@ public class OrderEntryControllor {
         }
 
         if (mid >= 1) {
-            logger.info("保存菜品更新！");
+            logger.info("Update Menus ！");
             logger.info("Request Param: mid = " + mid);
             logger.info("Request Param: cid = " + cid);
             logger.info("Request Param: mname = " + mname);
             logger.info("Request Param: price = " + price);
             menuManager.updateMenuByMid(mid, cid, mname, price);
         } else if (mid == -1) {
-            logger.info("添加新菜品！");
+            logger.info("Add new dish！");
             logger.info("Request Param: cid = " + cid);
             logger.info("Request Param: mname = " + mname);
             logger.info("Request Param: price = " + price);
             menuManager.addMenu(cid, mname, price);
         } else {
-            logger.error("出错了，mid 不正确！");
+            logger.error("Wrong，mid is not correct！");
         }
 
         HttpSession session = request.getSession();
@@ -251,16 +251,16 @@ public class OrderEntryControllor {
         }
 
         if (cid >= 1) {
-            logger.info("更新保存菜品分类！");
+            logger.info("Update Categories！");
             logger.info("cid = " + cid);
             logger.info("cname = " + cname);
             categoryManager.updateCategoryById(cid, cname);
         } else if (cid == -1) {
-            logger.info("添加新菜品分类！");
+            logger.info("Add new category！");
             logger.info("cname = " + cname);
             categoryManager.addCategory(cname);
         } else {
-            logger.info("出错了，id 不正确！");
+            logger.info("Wrong，id is not right！");
         }
         model.addAttribute("categories", categoryManager.getAllCategories());
         return "jsp/categoryList.jsp";
