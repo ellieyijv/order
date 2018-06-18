@@ -13,7 +13,7 @@
             <a class="navbar-brand">
                 <small>
                     <i class="icon-leaf"></i>
-                    家常菜
+                    Online Order Management
                 </small>
             </a><!-- /.brand -->
         </div><!-- /.navbar-header -->
